@@ -9,9 +9,10 @@
         class="list"
         v-on:click="del"
         v-for="item in this.todos"
-        v-bind:key="item"
+        v-bind:key="item.id"
+        :id="item.id"
       >
-        {{ item }}
+        {{ item.text }}
       </li>
     </ul>
   </div>
@@ -25,17 +26,23 @@ export default {
   },
   data() {
     return {
-      todos: ["a", "b"],
+      todos: [],
       content: "",
     };
   },
   methods: {
-    del: function() {
-      console.log(this.todos);
+    del: function(e) {
+      var id = e.target.id;
+      id *= 1;
+      console.log(id);
+      this.todos.map((current, key) => {
+        current.id === id && this.todos.splice(key, 1);
+        current.id === id && console.log(key);
+      });
     },
     addTodo: function() {
-      console.log(this.content);
-      this.todos.push(this.content);
+      const text = this.content;
+      this.todos.push({ text, id: this.todos.length });
       this.content = "";
     },
   },
