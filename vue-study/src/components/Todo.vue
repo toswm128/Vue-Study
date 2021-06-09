@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="todo">
     <form v-on:submit.prevent="addTodo">
       <input type="text" v-model="content" />
     </form>
@@ -20,10 +19,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
+  name: "Todo",
   data() {
     return {
       todos: [],
@@ -34,10 +30,8 @@ export default {
     del: function(e) {
       var id = e.target.id;
       id *= 1;
-      console.log(id);
       this.todos.map((current, key) => {
         current.id === id && this.todos.splice(key, 1);
-        current.id === id && console.log(key);
       });
     },
     addTodo: function() {
