@@ -5,7 +5,7 @@
     </div>
     <div>
       {{ title }}
-      {{ $route.params.id }}
+      {{ id }}
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 export default {
   name: "Memo",
+  props: { id: Number },
   data() {
     return {
       title: "hi",

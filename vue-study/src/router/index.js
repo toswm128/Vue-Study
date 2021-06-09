@@ -13,8 +13,9 @@ const router = new VueRouter({
       component: Todo,
     },
     {
-      path: "/memo/:id",
+      path: "/memo",
       component: Memo,
+      props: route => ({ id: route.query.id }),
     },
   ],
 });

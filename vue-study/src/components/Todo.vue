@@ -4,15 +4,16 @@
       <input type="text" v-model="content" />
     </form>
     <ul>
-      <li
+      <router-link
         class="list"
         v-on:click="del"
         v-for="item in this.todos"
-        v-bind:key="item.id"
+        :key="item.id"
         :id="item.id"
+        :to="{ path: 'memo', query: { id: item.id } }"
       >
         {{ item.text }}
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
