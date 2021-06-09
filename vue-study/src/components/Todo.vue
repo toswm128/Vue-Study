@@ -10,7 +10,7 @@
         v-for="item in this.todos"
         :key="item.id"
         :id="item.id"
-        :to="{ path: 'memo', query: { id: item.id } }"
+        :to="{ path: 'memo', query: { id: item.id, text: item.text } }"
       >
         {{ item.text }}
       </router-link>
@@ -37,9 +37,17 @@ export default {
     },
     addTodo: function() {
       const text = this.content;
-      this.todos.push({ text, id: this.todos.length });
+      this.todos.push({ id: this.todos.length, text });
+      localStorage.setItem("memos", JSON.stringify(this.todos));
       this.content = "";
     },
+  },
+  mounted: function() {
+    JSON.parse(localStorage.getItem("memos")) !== null
+      ? (this.todos = JSON.parse(localStorage.getItem("memos")))
+      : console.log(this.todos);
+
+    console.log(this.todos);
   },
 };
 </script>
