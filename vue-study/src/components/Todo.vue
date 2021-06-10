@@ -1,7 +1,9 @@
 <template>
   <div class="todo">
     <form v-on:submit.prevent="addTodo">
-      <input type="text" v-model="content" />
+      <input type="text" v-model="title" />
+      <textarea v-model="content" cols="30" rows="10"></textarea>
+      <button>제출</button>
     </form>
     <ul>
       <router-link
@@ -10,9 +12,9 @@
         v-for="item in this.todos"
         :key="item.id"
         :id="item.id"
-        :to="{ path: 'memo', query: { id: item.id, text: item.text } }"
+        :to="{ path: 'memo', query: { id: item.id } }"
       >
-        {{ item.text }}
+        {{ item.title }}
       </router-link>
     </ul>
   </div>
@@ -24,6 +26,7 @@ export default {
   data() {
     return {
       todos: [],
+      title: "",
       content: "",
     };
   },
@@ -36,8 +39,9 @@ export default {
       });
     },
     addTodo: function() {
-      const text = this.content;
-      this.todos.push({ id: this.todos.length, text });
+      const title = this.title;
+      const content = this.content;
+      this.todos.push({ id: this.todos.length, title, content });
       localStorage.setItem("memos", JSON.stringify(this.todos));
       this.content = "";
     },

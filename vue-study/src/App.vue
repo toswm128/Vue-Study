@@ -2,7 +2,7 @@
   <div id="app">
     <router-view>
       <Todo />
-      <Memo text="i'am text" />
+      <Memo />
     </router-view>
   </div>
 </template>

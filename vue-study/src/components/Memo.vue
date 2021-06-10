@@ -6,7 +6,7 @@
         <span class="id"> id: {{ id }} </span>
       </div>
       <div class="writing">
-        안녕하게요용ㅁㄴ어ㅗㅁㄴ어ㅏㅁㄴ
+        {{ content }}
       </div>
     </div>
   </div>
@@ -19,12 +19,8 @@ export default {
   data() {
     return {
       memos: JSON.parse(localStorage.getItem("memos")),
-      title: this.memos.map(memo => {
-        console.log(memo.text);
-        if (memo.id === this.id) {
-          return memo.text;
-        }
-      }),
+      title: "",
+      content: "",
     };
   },
   methods: {
@@ -32,7 +28,19 @@ export default {
       console.log("aa");
     },
   },
-  mounted: function() {},
+  mounted: function() {
+    this.memos.map(memo => {
+      console.log(memo.text, memo.id);
+      if (memo.id === this.id * 1) {
+        console.log(memo.text, "a");
+        this.title = memo.title;
+        this.content = memo.content;
+        console.log(this);
+      } else {
+        console.log(memo.id, this);
+      }
+    });
+  },
 };
 </script>
 
