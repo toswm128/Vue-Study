@@ -2,7 +2,8 @@
   <div class="todo">
     <form v-on:submit.prevent="addTodo">
       <input type="text" v-model="title" />
-      <textarea v-model="content" cols="30" rows="10"></textarea>
+      <ckeditor v-model="content" :config="editorConfig"></ckeditor>
+
       <button>제출</button>
     </form>
     <ul>
@@ -23,11 +24,14 @@
 <script>
 export default {
   name: "Todo",
+
   data() {
     return {
       todos: [],
       title: "",
       content: "",
+      editorData: "",
+      editorConfig: { height: "500px", language: "ko" },
     };
   },
   methods: {

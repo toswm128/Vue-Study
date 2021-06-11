@@ -5,9 +5,7 @@
         <span class="title"> 제목: {{ title }} </span>
         <span class="id"> id: {{ id }} </span>
       </div>
-      <div class="writing">
-        {{ content }}
-      </div>
+      <div class="writing" v-html="content"></div>
     </div>
   </div>
 </template>
