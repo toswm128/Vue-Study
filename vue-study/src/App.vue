@@ -1,20 +1,24 @@
 <template>
   <div id="app">
     <router-view>
-      <Todo />
+      <Main />
+      <Write />
       <Memo />
     </router-view>
   </div>
 </template>
 
 <script>
-import Todo from "./components/Todo.vue";
+import Write from "./components/Write.vue";
 import Memo from "./components/Memo.vue";
+
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
-    Todo,
+    Main,
+    Write,
     Memo,
   },
 };

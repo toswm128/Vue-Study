@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Todo from "../components/Todo.vue";
+import Write from "../components/Write.vue";
 import Memo from "../components/Memo.vue";
+import Main from "../components/Main.vue";
 
 Vue.use(VueRouter);
 
@@ -10,7 +11,11 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: Todo,
+      component: Main,
+    },
+    {
+      path: "/write",
+      component: Write,
     },
     {
       path: "/memo",
