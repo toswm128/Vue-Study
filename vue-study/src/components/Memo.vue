@@ -45,7 +45,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .content {
-  width: 800px;
+  width: 1200px;
   margin-right: auto;
   margin-left: auto;
 }

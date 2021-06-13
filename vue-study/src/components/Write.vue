@@ -1,10 +1,10 @@
 <template>
   <div class="write">
-    <form v-on:submit.prevent="addTodo">
+    <div class="title">
       <input type="text" v-model="title" />
-      <ckeditor v-model="content" :config="editorConfig"></ckeditor>
-      <button>제출</button>
-    </form>
+    </div>
+    <ckeditor v-model="content" :config="editorConfig"></ckeditor>
+    <button v-on:click="addTodo">제출</button>
   </div>
 </template>
 
@@ -38,4 +38,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.title {
+  display: flex;
+  height: 50px;
+  background-color: #f8f8f8;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  width: 100%;
+  height: 25px;
+  border: 0;
+
+  outline: none;
+  background-color: #f8f8f8;
+  font-size: 1.3rem;
+  padding: 0 1rem 0 1rem;
+}
+</style>

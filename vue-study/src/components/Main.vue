@@ -4,7 +4,7 @@
       <router-link class="list" :to="{ path: 'memo', query: { id: item.id } }">
         {{ item.title }}
       </router-link>
-      <button v-on:click="del">삭제</button>
+      <button v-on:click="del" :id="item.id">삭제</button>
     </ul>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
       this.memos.map((current, key) => {
         current.id === id && this.memos.splice(key, 1);
         localStorage.setItem("memos", JSON.stringify(this.memos));
+        console.log(current.id, id);
       });
     },
   },
