@@ -3,7 +3,6 @@
     <form v-on:submit.prevent="addTodo">
       <input type="text" v-model="title" />
       <ckeditor v-model="content" :config="editorConfig"></ckeditor>
-
       <button>제출</button>
     </form>
   </div>

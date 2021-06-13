@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Write from "../components/Write.vue";
-import Memo from "../components/Memo.vue";
-import Main from "../components/Main.vue";
+import WritePage from "../pages/WritePage.vue";
+import MemoPage from "../pages/MemoPage.vue";
+import MainPage from "../pages/MainPage.vue";
 
 Vue.use(VueRouter);
 
@@ -11,15 +11,15 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: Main,
+      component: MainPage,
     },
     {
       path: "/write",
-      component: Write,
+      component: WritePage,
     },
     {
       path: "/memo",
-      component: Memo,
+      component: MemoPage,
       props: route => ({ id: route.query.id }),
     },
   ],

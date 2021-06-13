@@ -1,25 +1,24 @@
 <template>
   <div id="app">
     <router-view>
-      <Main />
-      <Write />
-      <Memo />
+      <MainPage />
+      <WritePage />
+      <MemoPage />
     </router-view>
   </div>
 </template>
 
 <script>
-import Write from "./components/Write.vue";
-import Memo from "./components/Memo.vue";
-
-import Main from "./components/Main.vue";
+import WritePage from "./pages/WritePage.vue";
+import MemoPage from "./pages/MemoPage.vue";
+import MainPage from "./pages/MainPage.vue";
 
 export default {
   name: "App",
   components: {
-    Main,
-    Write,
-    Memo,
+    MainPage,
+    WritePage,
+    MemoPage,
   },
 };
 </script>
