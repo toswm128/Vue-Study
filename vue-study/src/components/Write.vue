@@ -16,6 +16,7 @@ export default {
     return {
       memos: [],
       title: "",
+      count: 0,
       content: "",
       editorData: "",
       editorConfig: { height: "500px", language: "ko" },
@@ -25,7 +26,7 @@ export default {
     addTodo: function() {
       const title = this.title;
       const content = this.content;
-      this.memos.push({ id: this.memos.length, title, content });
+      this.memos.push({ id: this.count + 1, title, content });
       localStorage.setItem("memos", JSON.stringify(this.memos));
       this.content = "";
     },
@@ -33,6 +34,8 @@ export default {
   mounted: function() {
     JSON.parse(localStorage.getItem("memos")) !== null &&
       (this.memos = JSON.parse(localStorage.getItem("memos")));
+    this.count = this.memos[this.memos.length - 1].id;
+    console.log(this.count);
   },
 };
 </script>
