@@ -2,12 +2,30 @@
   <div class="main">
     <div class="content">
       <ul v-for="item in this.memos" :key="item.id">
-        <img :src="background[item.id - 1]" alt="" />
         <router-link
           class="list"
           :to="{ path: 'memo', query: { id: item.id } }"
         >
-          {{ item.title }}
+          <img
+            :src="item.background ? item.background : background[item.id - 1]"
+            :alt="item.id"
+            v-if="background[item.id - 1] !== undefind"
+          />
+          <img
+            :src="item.background"
+            :alt="item.id"
+            v-else-if="item.background !== ``"
+          />
+          <div class="title">
+            {{ item.title }}
+          </div>
+          <input
+            type="text"
+            :id="item.id"
+            placeholder="이미지 url을 입력해주세요..."
+            v-on:click="e => e.preventDefault()"
+            v-on:keydown="handleImageUrl"
+          />
         </router-link>
         <button v-on:click="del" :id="item.id">삭제</button>
       </ul>
@@ -16,23 +34,14 @@
 </template>
 
 <script>
+import { background } from "../assets/background.json";
 export default {
   name: "Main",
 
   data() {
     return {
       memos: [],
-      background: [
-        "https://cdn.discordapp.com/attachments/676942969710051360/853799693238534144/ab0b164fd8c516bc.gif",
-        "https://lh3.googleusercontent.com/proxy/FEM6ng8jtZ5YicDQcOoK6VyXeOsZaRzkEqdlScjdql1PngCDdL3RK5SfQkwzKSC64jmsCzeHYh-uYOwfHONdEnrmbSgMcd9djpgRwtVzfvrRpFaS6YVKxZH0sg",
-        "https://img.insight.co.kr/static/2019/01/31/700/18nd52ajs5z4750u7p6f.jpg",
-        "https://img.hankyung.com/photo/201808/03.17543429.1.jpg",
-        "http://ojsfile.ohmynews.com/STD_IMG_FILE/2020/0130/IE002597642_STD.jpg",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3FDg9Q7JRnV2SGsvXhRJyafXFWZKatrUHg&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs52rnezs7eGzT8hxJkEHhtHivFzOh03XPYz1i_xOvIZaDR2bMmyU0IHYXMQlYNhTdg_I&usqp=CAU",
-        "https://image.musinsa.com/mfile_s01/2020/02/07/f99687dd719c4e8bc6a39e946c3d9ef7114955.jpg",
-        "https://pbs.twimg.com/media/EQJGuF9U0AEB3QG.jpg",
-      ],
+      background,
     };
   },
   methods: {
@@ -44,6 +53,17 @@ export default {
         localStorage.setItem("memos", JSON.stringify(this.memos));
         console.log(current.id, id);
       });
+    },
+    handleImageUrl: function(e) {
+      if (e.key === "Enter") {
+        const id = e.target.id;
+
+        this.memos.map((current, key) => {
+          current.id == id && (this.memos[key].background = e.target.value);
+        });
+        localStorage.setItem("memos", JSON.stringify(this.memos));
+        e.target.value = "";
+      }
     },
   },
   mounted: function() {
@@ -58,6 +78,7 @@ export default {
 .main {
   display: flex;
   justify-content: center;
+  background: #22632e;
 }
 .content {
   width: 1200px;
@@ -69,10 +90,46 @@ ul {
   width: 500px;
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
   align-items: flex-end;
+  justify-content: center;
   padding: 0;
 }
-img {
+.list {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed red;
+  background: #be873a;
+  box-shadow: 10px 10px 73px -37px rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+td {
+  width: 100%;
+}
+img {
+  width: 480px;
+}
+.title {
+  width: 100%;
+  background: white;
+  color: black;
+}
+button {
+  width: 100%;
+  font-size: 1.3rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  color: gray;
+  border: 0;
+  cursor: pointer;
+  padding: 0.5rem 0 0.5rem 0;
+  transition: 0.5s ease-in-out;
+}
+button:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  color: white;
+  background-color: #ed4337;
 }
 </style>

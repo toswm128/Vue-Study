@@ -26,9 +26,9 @@ export default {
     addTodo: function() {
       const title = this.title;
       const content = this.content;
-      this.memos.push({ id: this.count + 1, title, content });
+      this.memos.push({ id: this.count + 1, title, content, background: "" });
       localStorage.setItem("memos", JSON.stringify(this.memos));
-      this.content = "";
+      this.$router.push("/");
     },
   },
   mounted: function() {

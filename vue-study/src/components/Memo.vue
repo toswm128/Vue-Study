@@ -1,5 +1,5 @@
 <template>
-  <div class="memo" v-on:click="paint">
+  <div class="memo">
     <div class="content">
       <div class="header">
         <span class="title"> 제목: {{ title }} </span>
@@ -21,11 +21,7 @@ export default {
       content: "",
     };
   },
-  methods: {
-    paint: function() {
-      console.log("aa");
-    },
-  },
+
   mounted: function() {
     this.memos.map(memo => {
       console.log(memo.text, memo.id);
