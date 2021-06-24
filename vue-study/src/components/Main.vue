@@ -22,7 +22,7 @@
           <input
             type="text"
             :id="item.id"
-            placeholder="이미지 url을 입력해주세요..."
+            placeholder="배경 수정"
             v-on:click="e => e.preventDefault()"
             v-on:keydown="handleImageUrl"
           />
@@ -117,6 +117,21 @@ img {
   background: white;
   color: black;
 }
+
+input {
+  height: 5px;
+}
+
+input:focus {
+  height: 10px;
+  display: block;
+  content: "이미지 url을 입력해주세요...";
+}
+
+input:focus::placeholder {
+  color: tomato;
+}
+
 button {
   width: 100%;
   font-size: 1.3rem;
