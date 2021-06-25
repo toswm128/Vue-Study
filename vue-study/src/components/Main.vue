@@ -6,6 +6,9 @@
           class="list"
           :to="{ path: 'memo', query: { id: item.id } }"
         >
+          <div class="title">
+            {{ item.title }}
+          </div>
           <img
             :src="item.background ? item.background : background[item.id - 1]"
             :alt="item.id"
@@ -16,13 +19,10 @@
             :alt="item.id"
             v-else-if="item.background !== ``"
           />
-          <div class="title">
-            {{ item.title }}
-          </div>
           <input
             type="text"
             :id="item.id"
-            placeholder="배경 수정"
+            placeholder="배경 이미지 수정"
             v-on:click="e => e.preventDefault()"
             v-on:keydown="handleImageUrl"
           />
@@ -78,16 +78,15 @@ export default {
 .main {
   display: flex;
   justify-content: center;
-  background: #22632e;
 }
 .content {
-  width: 1200px;
+  width: 1000px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 ul {
-  width: 500px;
+  width: 400px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -99,48 +98,50 @@ ul {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px dashed red;
-  background: #be873a;
-  box-shadow: 10px 10px 73px -37px rgba(0, 0, 0, 0.75);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 10px 10px 73px 0px rgb(0, 0, 0, 0.3);
   padding: 10px;
   text-decoration: none;
   box-sizing: border-box;
 }
-td {
-  width: 100%;
-}
 img {
-  width: 480px;
+  width: 380px;
 }
 .title {
   width: 100%;
-  background: white;
   color: black;
+  font-size: 1.5rem;
 }
 
 input {
-  height: 5px;
+  height: 20px;
+  border: 0;
+  background-color: white;
+  outline: none;
+  font-size: 1.2rem;
+  box-shadow: 0px 0px 20px 0px rgb(0, 0, 0, 0.1);
 }
 
 input:focus {
-  height: 10px;
-  display: block;
-  content: "이미지 url을 입력해주세요...";
+  height: 20px;
 }
 
-input:focus::placeholder {
-  color: tomato;
+input::placeholder {
+  /* color: gold; */
+  text-align: center;
 }
 
 button {
   width: 100%;
   font-size: 1.3rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
-  color: gray;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  color: white;
   border: 0;
   cursor: pointer;
   padding: 0.5rem 0 0.5rem 0;
   transition: 0.5s ease-in-out;
+  /* box-shadow: 10px 10px 73px 0px rgb(0, 0, 0, 0.3); */
+  border-radius: 0 0 10px 10px;
 }
 button:hover {
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));

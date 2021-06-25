@@ -1,10 +1,12 @@
 <template>
   <div class="write">
-    <div class="title">
-      <input type="text" v-model="title" />
+    <div class="content">
+      <div class="title">
+        <input type="text" v-model="title" placeholder="제목" />
+      </div>
+      <ckeditor v-model="content" :config="editorConfig"></ckeditor>
+      <button class="submit" v-on:click="addTodo">제출</button>
     </div>
-    <ckeditor v-model="content" :config="editorConfig"></ckeditor>
-    <button v-on:click="addTodo">제출</button>
   </div>
 </template>
 
@@ -42,12 +44,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.write {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  margin-top: 30px;
+  width: 1000px;
+}
+
 .title {
   display: flex;
   height: 50px;
   background-color: #f8f8f8;
   justify-content: center;
   align-items: center;
+  border-radius: 20px 20px 0 0;
 }
 input {
   width: 100%;
@@ -58,5 +71,15 @@ input {
   background-color: #f8f8f8;
   font-size: 1.3rem;
   padding: 0 1rem 0 1rem;
+}
+
+.submit {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 3px 0 3px 0;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 0 0 20px 20px;
 }
 </style>
